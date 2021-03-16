@@ -3,7 +3,7 @@ services:
     frontend:
         container_name: client
         build:
-            context: ./client
+            context: ./client_react
             dockerfile: Dockerfile
         image: moraa/client
         ports:
@@ -21,12 +21,20 @@ services:
             dockerfile: Dockerfile
         image: moraa/server
         ports:
-            - "5000:5000"
+            - "5001:5001"
         volumes:
             - ./server:/src/app
             - /src/app/config
         networks:
             - network
+    client:
+        build:
+            context: ./client
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        depends_on:
+            - backend
 networks:
     network:
         driver: bridge
