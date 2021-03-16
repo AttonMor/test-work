@@ -1,3 +1,4 @@
 docker-compose build && docker-compose up
 
-run localhost:3000
+react: run localhost:3000
+vue: run localhost:8080
